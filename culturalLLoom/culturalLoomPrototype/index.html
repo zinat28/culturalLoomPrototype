@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CulturalLoom: Heritage, Stays and Local Hosts in Bangladesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#F7F4EE;--surface:#fff;--ink:#1D2B2F;--muted:#566467;--line:#DDD5C5;--teal:#0F4C5C;--sea:#D6E8EC;--brick:#B5432C;--clay:#F1DDD4;--sand:#E6D9C3;--amber:#FBEFD9;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0;line-height:1.15}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font-family:inherit;font-size:15px;color:var(--ink)}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+header.top{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{display:flex;align-items:center;gap:28px;min-height:72px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:22px;color:var(--teal)}
+.nav nav{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.nav nav a{min-height:44px;display:flex;align-items:center;padding:0 14px;border-radius:22px;font-size:15px;font-weight:500;color:var(--muted)}
+.nav nav a.on{background:var(--sea);color:var(--teal);font-weight:600}
+.pill{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:14px}
+.btn{min-height:48px;padding:0 24px;border-radius:12px;border:0;font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn.teal{background:var(--teal);color:#fff}.btn.brick{background:var(--brick);color:#fff}
+.btn.out{background:transparent;border:1.5px solid var(--teal);color:var(--teal)}
+.chip{min-height:44px;padding:0 18px;border-radius:22px;border:1px solid var(--line);background:#fff;font-weight:500;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.badge{display:inline-flex;align-items:center;gap:5px;background:var(--sea);color:var(--teal);border-radius:12px;padding:4px 10px;font-size:12px;font-weight:600}
+.muted{color:var(--muted)}
+.hero{padding:64px 0 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-size:52px;margin-bottom:16px}
+.hero p{font-size:18px;color:var(--muted);margin:0 0 24px;max-width:520px}
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 16px;min-height:56px}
+.search input{border:0;outline:0;flex:1;min-height:52px;background:transparent;min-width:0}
+.art{border-radius:24px;background:var(--sand);min-height:300px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.spot{display:flex;flex-direction:column;overflow:hidden;transition:box-shadow .15s}
+.spot:hover{box-shadow:0 6px 20px rgba(29,43,47,.12)}
+.spot .img{height:150px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.spot .body{padding:16px;display:flex;flex-direction:column;gap:6px}
+.sect{padding:24px 0 48px}
+.sect h2{font-size:30px;margin-bottom:20px}
+.two{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px;align-items:start}
+.sticky{position:sticky;top:96px;display:flex;flex-direction:column;gap:16px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.facts span:first-child{display:block;font-size:12px;color:var(--muted)}
+.facts span:last-child{font-size:16px;font-weight:600}
+.notice{display:flex;gap:10px;background:var(--amber);color:#5C3D00;border-radius:12px;padding:12px 14px;font-size:14px}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}
+input[type=text],textarea,select{min-height:48px;border:1px solid #C9BFAB;border-radius:12px;padding:0 14px;background:#FBFAF7;width:100%}
+textarea{padding:12px 14px;resize:vertical}
+.hotel{display:flex;gap:16px;padding:14px}
+.hotel .pic{width:150px;min-height:150px;border-radius:12px;background:var(--sea);flex-shrink:0;display:flex;align-items:flex-end;overflow:hidden}
+.tag{font-size:12px;font-weight:600;padding:3px 10px;border-radius:10px;background:#F1ECE1;color:#33454A}
+.tag.sea{background:var(--teal);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;background:#F1ECE1;padding:10px 16px;font-size:12px}
+td{padding:0;border-top:1px solid var(--line)}
+td button{width:100%;text-align:left;border:0;background:transparent;min-height:48px;padding:0 16px}
+tr.sel td{background:#EEF5F6}
+.st{display:inline-block;padding:3px 10px;border-radius:10px;font-size:12px;font-weight:600}
+footer{background:var(--teal);color:#D6E8EC;padding:32px 0;font-size:14px}
+.avatar{width:64px;height:64px;border-radius:32px;background:var(--clay);color:#8E3220;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:26px;flex-shrink:0}
+@media (max-width:900px){
+ .hero,.two{grid-template-columns:1fr}.hero h1{font-size:36px}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.sticky{position:static}.art{min-height:200px}
+}
+@media (max-width:600px){
+ .grid3,.grid2{grid-template-columns:1fr}.hotel{flex-direction:column}.hotel .pic{width:100%;min-height:110px}.nav{gap:8px;padding:8px 0}.wrap{padding:0 16px}
+}
+</style>
+</head>
+<body>
+<a href="#main" style="position:absolute;left:-999px" onfocus="this.style.left='8px'">Skip to content</a>
+<header class="top"><div class="wrap nav">
+  <a href="#/" class="logo" aria-label="CulturalLoom home">
+    <svg width="30" height="30" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 3v22M12 3v22M18 3v22M24 3v22" stroke="#0F4C5C" stroke-width="2.4" stroke-linecap="round"/><path d="M3 9h22M3 17h22" stroke="#B5432C" stroke-width="2.4" stroke-linecap="round"/></svg>CulturalLoom</a>
+  <nav aria-label="Main" id="nav"></nav>
+  <button class="pill" id="lang" aria-label="Switch language between English and Bangla">EN · বাংলা</button>
+</div></header>
+<main id="main"></main>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+  <span>CulturalLoom &amp; Smart Lodging · Bangladesh · Cox’s Bazar and historic heritage hubs</span>
+  <a href="#/admin" style="text-decoration:underline">Moderator sign-in</a></div></footer>
+
+<script>
+var ICON={
+ search:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#566467" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+ check:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0F4C5C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>',
+ warn:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C3D00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:2px"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18.5v.1"/></svg>'
+};
+var ARCH='<svg width="100%" height="110" viewBox="0 0 300 110" preserveAspectRatio="xMidYMax slice" fill="none" aria-hidden="true"><path d="M10 110V60a32 32 0 0 1 64 0v50M82 110V44a32 32 0 0 1 64 0v66M154 110V60a32 32 0 0 1 64 0v50M226 110V44a32 32 0 0 1 64 0v66" stroke="#0F4C5C" stroke-width="4" opacity="0.45"/></svg>';
+var WAVE='<svg width="100%" height="60" viewBox="0 0 150 60" preserveAspectRatio="xMidYMax slice" fill="none" aria-hidden="true"><path d="M0 20c19-12 37 12 56 0s37 12 56 0 28 12 38 0M0 42c19-12 37 12 56 0s37 12 56 0 28 12 38 0" stroke="#0F4C5C" stroke-width="3" opacity="0.5"/></svg>';
+
+/* Sample data: replace with verified records */
+var SPOTS=[
+  {id:'inani',name:'Inani Coral Beach',cat:'Nature & Coast',city:'Cox’s Bazar',era:'Marine Ecosystem',hours:'24 Hours Open',closed:'Open daily',tone:'#D6E8EC'},
+  {id:'himchari',name:'Himchari National Park',cat:'Eco-Park',city:'Cox’s Bazar',era:'Rainforest Reserve',hours:'08:00–17:00',closed:'Open daily',tone:'#E6D9C3'},
+  {id:'lalbagh',name:'Lalbagh Fort',cat:'Forts',city:'Dhaka',era:'Mughal era',hours:'10:00–17:00',closed:'Monday',tone:'#E6D9C3'},
+  {id:'sixty',name:'Sixty Dome Mosque',cat:'Mosques',city:'Bagerhat',era:'15th century',hours:'08:00–17:00',closed:'Open daily',tone:'#D6E8EC'},
+  {id:'ahsan',name:'Ahsan Manzil',cat:'Palaces',city:'Dhaka',era:'Colonial era',hours:'10:00–17:00',closed:'Thursday',tone:'#F1DDD4'},
+  {id:'moheshkhali',name:'Adinath Temple',cat:'Churches',city:'Cox’s Bazar',era:'16th century',hours:'06:00–18:00',closed:'Open daily',tone:'#F1DDD4'}
+];
+var HOTELS=[
+  {name:'Sayeman Beach Resort',area:'Kolatoli',sea:true,view:'True sea view',dist:'Beachfront (0 m)',peak:'৳ 12,500',off:'৳ 7,200'},
+  {name:'Long Beach Hotel',area:'Kolatoli',sea:false,view:'Side view',dist:'300 m from the beach',peak:'৳ 7,500',off:'৳ 4,000'},
+  {name:'Dera Resort & Spa',area:'Inani',sea:true,view:'True sea view',dist:'Beachfront',peak:'৳ 15,000',off:'৳ 9,000'},
+  {name:'Hotel Sea Crown',area:'Kolatoli',sea:true,view:'True sea view',dist:'On the beach',peak:'৳ 6,800',off:'৳ 3,800'}
+];
+var HOSTS=[
+  {n:'Mohammed Rashed',r:'Marine Drive Transport & Guide',a:'Cox’s Bazar Sadar',cov:['Marine Drive','Inani Beach','Himchari']},
+  {n:'Tanvir Ahmed',r:'Local Historian & Beach Guide',a:'Kolatoli, Cox’s Bazar',cov:['Kolatoli Beach','Laboni Beach']},
+  {n:'Ahsan Kabir',r:'Local Historian',a:'Old Dhaka',cov:['Lalbagh Fort','Ahsan Manzil']},
+  {n:'Sharmin Akter',r:'Heritage Eco-Guide',a:'Bagerhat',cov:['Sixty Dome Mosque']}
+];
+var CTYPES=[
+  {id:'spot',t:'Add a heritage or nature spot',h:'An unlisted fort, beach point, park or palace',form:'Add a heritage or natural spot',notes:'Description',np:'What makes this place significant?',f:[['Spot name','e.g. Inani Coral Beach'],['Category and city','e.g. Nature & Coast · Cox’s Bazar'],['Opening hours and closing day','e.g. 08:00–17:00, closed Open daily'],['Entry fee','Local and foreign, in ৳']]},
+  {id:'hotel',t:'List a hotel',h:'Rooms, sea view type and rates',form:'List a hotel or stay',notes:'Amenities and notes',np:'Facilities, nearby landmarks, room types',f:[['Hotel name','e.g. Sayeman Beach Resort'],['Area','e.g. Kolatoli, Inani, Laboni'],['View type','True sea view, side view or none'],['Peak and off-peak price per night','e.g. ৳ 12,500 / ৳ 7,200']]},
+  {id:'host',t:'Become an ambassador',h:'Share local knowledge as a verified host',form:'Register as a local ambassador',notes:'About you',np:'Languages, experience, places you know best',f:[['Full name','As shown on your ID'],['Area you cover','e.g. Kolatoli & Marine Drive'],['Role','Guide, historian, transport operator'],['Phone, WhatsApp or email','How travelers can reach you']]},
+  {id:'review',t:'Write a review',h:'A spot, hotel, ambassador or the platform',form:'Write a review or feedback',notes:'Your review',np:'Tell other travelers what to expect',f:[['What are you reviewing?','Spot, hotel, ambassador or platform'],['Name of the place or person','e.g. Sayeman Beach Resort'],['Star rating','1 to 5']]}
+];
+var QUEUE=[
+  {t:'Hotel: Sayeman Beach Resort listing',type:'Hotel',by:'Front Desk Manager',f:[['Area','Kolatoli Beach'],['View type','True sea view'],['Peak price','৳ 12,500'],['Off-peak price','৳ 7,200']]},
+  {t:'Spot: Inani Coral Beach',type:'Heritage spot',by:'Local Traveler',f:[['Category · City','Nature & Coast · Cox’s Bazar'],['Opening hours','24 Hours Open'],['Entry fee','Free'],['Closing day','Open daily']]},
+  {t:'Review: Long Beach Hotel',type:'Review',by:'Zinat Liza',f:[['About','Long Beach Hotel'],['Rating','5 of 5'],['Photos','2 attached'],['Language','English']]},
+  {t:'Ambassador: Mohammed Rashed',type:'Ambassador',by:'Rashed (Operator)',f:[['Area','Marine Drive'],['Role','Transport & Guide'],['Contact','Call · WhatsApp'],['ID document','Uploaded']]},
+  {t:'Closure notice: Himchari Park',type:'Closure notice',by:'Park Staff',f:[['Site','Himchari Park'],['From','Nov 05'],['Until','Nov 07'],['Reason','Heavy rain maintenance']]}
+];
+
+var S={cat:'All',q:'',sea:false,season:'peak',ctype:'spot',sent:false,sel:0,status:['Pending','Pending','Pending','Pending','Pending'],hv:'list'};
+var $=function(s){return document.querySelector(s)};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function chipCol(s){return s==='Approved'?['#D6E8EC','#0F4C5C']:s==='Rejected'?['#F5D9D3','#7A2414']:['#FBEFD9','#5C3D00']}
+
+function spotCard(s){
+ return '<a class="card spot" href="#/spot/'+s.id+'"><div class="img" style="background:'+s.tone+'">'+ARCH+'</div><div class="body"><h3 style="font-size:20px">'+esc(s.name)+'</h3><span class="muted" style="font-size:14px">'+esc(s.cat)+' · '+esc(s.city)+' · '+esc(s.era)+'</span><span style="font-size:14px">'+esc(s.hours)+' · Closed: '+esc(s.closed)+'</span><span class="badge" style="align-self:flex-start;margin-top:4px">'+ICON.check+'Verified Oct 2026</span></div></a>';
+}
+function hotelCard(h,season){
+ return '<div class="card hotel"><div class="pic">'+WAVE+'</div><div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:0"><h3 style="font-size:20px">'+esc(h.name)+'</h3><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag'+(h.sea?' sea':'')+'">'+h.view+'</span><span class="tag">'+h.area+'</span></div><span class="muted" style="font-size:14px">'+h.dist+'</span><span style="font-size:18px;font-weight:600">'+(season==='peak'?h.peak:h.off)+' <span class="muted" style="font-size:13px;font-weight:400">/ night</span></span><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn teal" style="min-height:44px;padding:0 20px" href="#/hosts">Call</a><a class="btn out" style="min-height:44px;padding:0 20px" href="#/hosts">WhatsApp</a></div></div></div>';
+}
+function hostCard(h){
+ return '<article class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px"><div style="display:flex;gap:16px;align-items:center"><div class="avatar">A</div><div><h3 style="font-size:20px">'+esc(h.n)+'</h3><div class="muted" style="font-size:14px">'+esc(h.r)+' · '+esc(h.a)+'</div><span class="badge" style="margin-top:6px">'+ICON.check+'Credentials verified</span></div></div><div style="display:flex;gap:8px;flex-wrap:wrap">'+h.cov.map(function(c){return '<span class="tag">'+esc(c)+'</span>'}).join('')+'</div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn teal" style="min-height:44px;padding:0 20px" href="#/hosts">Call</a><a class="btn teal" style="min-height:44px;padding:0 20px" href="#/hosts">WhatsApp</a><a class="btn out" style="min-height:44px;padding:0 20px" href="#/hosts">Email</a></div></article>';
+}
+
+function vHome(){
+ var cats=['All','Forts','Museums','Palaces','Mosques','Churches'];
+ var q=S.q.toLowerCase();
+ var list=SPOTS.filter(function(s){return (S.cat==='All'||s.cat===S.cat)&&(!q||(s.name+s.city+s.era).toLowerCase().indexOf(q)>-1)});
+ return '<div class="wrap"><section class="hero"><div><h1>Visit heritage that is actually open.</h1><p>Verified hours, fees and local help for Bangladesh’s forts, mosques and palaces, with honest stay options nearby.</p>'+
+ '<label class="search">'+ICON.search+'<input type="text" id="q" value="'+esc(S.q)+'" placeholder="Search a site, city or era" aria-label="Search heritage spots by site, city or era"></label>'+
+ '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">'+cats.map(function(c){return '<button class="chip" data-cat="'+c+'" aria-pressed="'+(S.cat===c)+'">'+c+'</button>'}).join('')+'</div></div>'+
+ '<div class="art" style="background:var(--sand)"><svg width="100%" height="300" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice" fill="none" aria-hidden="true"><path d="M20 300V170a50 50 0 0 1 100 0v130M130 300V120a50 50 0 0 1 100 0v180M240 300V170a50 50 0 0 1 100 0v130" stroke="#0F4C5C" stroke-width="6" opacity="0.4"/><path d="M0 250c40-20 80 20 120 0s80 20 120 0 80 20 160 0" stroke="#B5432C" stroke-width="4" opacity="0.5"/></svg></div></section>'+
+ '<section class="sect" aria-labelledby="hs"><div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px"><h2 id="hs">Heritage spots</h2><span class="muted">'+list.length+(list.length===1?' place':' places')+'</span></div>'+
+ (list.length?'<div class="grid3">'+list.map(spotCard).join('')+'</div>':'<p class="muted">No spots match your search yet. Try another word, or <a href="#/contribute" style="text-decoration:underline;color:var(--teal)">add the spot</a>.</p>')+'</section>'+
+ '<section class="sect" style="padding-top:0"><div class="grid2"><a class="card" href="#/hotels" style="padding:28px;background:var(--sea);border-color:var(--sea)"><h3 style="font-size:24px;color:var(--teal);margin-bottom:8px">Stays near the sites</h3><p style="margin:0;color:#33454A">Filter by true sea view, distance to landmarks and peak or off-peak prices.</p></a><a class="card" href="#/hosts" style="padding:28px;background:var(--clay);border-color:var(--clay)"><h3 style="font-size:24px;color:#8E3220;margin-bottom:8px">Ask a local host</h3><p style="margin:0;color:#33454A">Verified guides and historians reachable by call, WhatsApp or email.</p></a></div></section></div>';
+}
+function vSpot(id){
+ var s=SPOTS.filter(function(x){return x.id===id})[0]||SPOTS[0];
+ return '<div class="wrap"><nav aria-label="Breadcrumb" style="padding:20px 0;font-size:14px" class="muted"><a href="#/" style="text-decoration:underline">Explore</a> / '+esc(s.name)+'</nav>'+
+ '<div class="art" style="min-height:260px;background:'+s.tone+'">'+ARCH.replace('height="110"','height="200"')+'</div>'+
+ '<div class="two" style="padding:28px 0 56px"><div style="display:flex;flex-direction:column;gap:28px"><div><h1 style="font-size:44px;margin-bottom:8px">'+esc(s.name)+'</h1><div class="muted">'+esc(s.cat)+' · '+esc(s.city)+' · '+esc(s.era)+'</div><div style="margin-top:8px;font-weight:600">★ 4.6 <span class="muted" style="font-weight:400">· 128 reviews</span></div></div>'+
+ '<section><h2 style="font-size:26px;margin-bottom:10px">About</h2><p style="margin:0;color:#33454A;max-width:640px">[Short history summary written or approved by the site authority goes here.]</p></section>'+
+ '<section><div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="font-size:26px;margin-bottom:12px">Stays nearby</h2><a href="#/hotels" style="color:var(--teal);font-weight:600">See all</a></div>'+
+ '<div class="card" style="height:200px;background:var(--sand);overflow:hidden;margin-bottom:14px"><svg width="100%" height="200" viewBox="0 0 600 200" preserveAspectRatio="none" fill="none" role="img" aria-label="Map showing the site and two nearby hotels"><path d="M0 150C100 130 200 170 320 150S520 130 600 155V200H0z" fill="#D6E8EC"/><path d="M0 60H600M150 0V200M420 0V200" stroke="#fff" stroke-width="8"/><g transform="translate(300 78)"><path d="M0 0c-12-16-16-23-16-32a16 16 0 0 1 32 0c0 9-4 16-16 32z" fill="#B5432C"/><circle cx="0" cy="-32" r="6" fill="#fff"/></g><circle cx="150" cy="120" r="13" fill="#0F4C5C"/><circle cx="440" cy="100" r="13" fill="#0F4C5C"/></svg></div>'+
+ '<div class="grid2">'+HOTELS.slice(0,2).map(function(h){return hotelCard(h,'peak')}).join('')+'</div></section>'+
+ '<section><h2 style="font-size:26px;margin-bottom:12px">Reviews</h2><div class="card" style="padding:16px;margin-bottom:12px"><b>[Reviewer name] · ★★★★★</b><p style="margin:6px 0 0;color:#33454A">[Approved review text appears here.]</p></div><a class="btn brick" href="#/contribute">Write a review for this spot</a></section></div>'+
+ '<aside class="sticky" aria-label="Visiting information"><section class="card" style="padding:22px;display:flex;flex-direction:column;gap:16px"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap"><h2 style="font-size:22px">Visiting</h2><span class="badge">'+ICON.check+'Verified Oct 2026</span></div><div class="facts"><div><span>Opening hours</span><span>'+esc(s.hours)+'</span></div><div><span>Weekly closing</span><span>'+esc(s.closed)+'</span></div><div><span>Entry · local</span><span>৳ [fee]</span></div><div><span>Entry · foreign</span><span>৳ [fee]</span></div></div><div class="notice">'+ICON.warn+'<span>Closure notice: [Site authority notice appears here, with dates]</span></div></section>'+
+ '<section class="card" style="padding:22px;display:flex;flex-direction:column;gap:14px"><div style="display:flex;gap:14px;align-items:center"><div class="avatar" style="width:52px;height:52px;font-size:22px">A</div><div><b>[Ambassador name]</b><div class="muted" style="font-size:14px">Local historian · '+esc(s.city)+'</div></div></div><div style="display:flex;gap:10px"><a class="btn teal" style="flex:1" href="#/hosts">Call</a><a class="btn out" style="flex:1" href="#/hosts">WhatsApp</a></div></section></aside></div></div>';
+}
+function vHotels(){
+ var list=HOTELS.filter(function(h){return !S.sea||h.sea});
+ var p=function(on){return 'aria-pressed="'+on+'"'};
+ return '<div class="wrap" style="padding-top:36px;padding-bottom:56px"><h1 style="font-size:40px">Hotels</h1><p class="muted" style="margin:6px 0 20px">Cox’s Bazar · Kolatoli · Inani</p>'+
+ '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px"><button class="chip" id="sea" '+p(S.sea)+'>True sea view only</button><button class="chip" data-season="peak" '+p(S.season==='peak')+'>Peak prices</button><button class="chip" data-season="off" '+p(S.season==='off')+'>Off-peak prices</button></div>'+
+ '<div class="two" style="grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)"><div style="display:flex;flex-direction:column;gap:16px"><span class="muted" style="font-size:14px">'+list.length+(list.length===1?' stay':' stays')+' · '+(S.season==='peak'?'peak-season':'off-peak')+' prices per night</span>'+list.map(function(h){return hotelCard(h,S.season)}).join('')+'</div>'+
+ '<div class="sticky"><div class="card" style="height:460px;overflow:hidden;position:relative;background:var(--sand)"><svg width="100%" height="100%" viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" fill="none" role="img" aria-label="Map of hotels along the Cox’s Bazar coast"><path d="M230 0C215 120 245 230 220 330S235 430 225 460H400V0z" fill="#D6E8EC"/><path d="M0 120H220M0 260H225M100 0V460" stroke="#fff" stroke-width="8"/><circle cx="198" cy="110" r="15" fill="#0F4C5C"/><circle cx="206" cy="230" r="15" fill="#0F4C5C"/><circle cx="140" cy="350" r="15" fill="#566467"/><g transform="translate(70 190)"><path d="M0 0c-13-17-17-25-17-34a17 17 0 0 1 34 0c0 9-4 17-17 34z" fill="#B5432C"/><circle cx="0" cy="-34" r="6" fill="#fff"/></g></svg>'+
+ '<div style="position:absolute;left:12px;bottom:12px;background:#fff;border-radius:10px;padding:6px 12px;font-size:12px;display:flex;gap:12px"><span><span style="display:inline-block;width:10px;height:10px;border-radius:5px;background:#0F4C5C;margin-right:5px"></span>True sea view</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:5px;background:#566467;margin-right:5px"></span>Side view</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:5px;background:#B5432C;margin-right:5px"></span>Landmark</span></div></div></div></div></div>';
+}
+function vHosts(){
+ return '<div class="wrap" style="padding-top:36px;padding-bottom:56px"><h1 style="font-size:40px">Local ambassadors</h1><p class="muted" style="margin:6px 0 24px;max-width:600px">Verified local guides, historians and transport operators who can confirm what is open today.</p><div class="grid2">'+HOSTS.map(hostCard).join('')+'</div><div style="margin-top:28px"><a class="btn brick" href="#/contribute">Become an ambassador</a></div></div>';
+}
+function vContribute(){
+ var c=CTYPES.filter(function(x){return x.id===S.ctype})[0];
+ var body=S.sent?
+ '<section role="status" class="card" style="padding:48px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px"><div style="width:64px;height:64px;border-radius:32px;background:var(--sea);display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F4C5C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></div><h2 style="font-size:26px">Sent for review</h2><p class="muted" style="margin:0;max-width:440px">Thank you. A moderator will check your submission and email you when it is approved or if we need more detail.</p><button class="btn out" id="again">Add something else</button></section>':
+ '<div class="two" style="grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)"><div role="group" aria-label="What would you like to add?" style="display:flex;flex-direction:column;gap:12px">'+
+ CTYPES.map(function(t){var on=t.id===S.ctype;return '<button data-ctype="'+t.id+'" aria-pressed="'+on+'" style="text-align:left;padding:16px 18px;border-radius:14px;min-height:76px;border:1.5px solid '+(on?'#0F4C5C':'#DDD5C5')+';background:'+(on?'#0F4C5C':'#fff')+';color:'+(on?'#fff':'#1D2B2F')+'"><b style="display:block;font-size:16px">'+t.t+'</b><span style="font-size:13px;color:'+(on?'#D6E8EC':'#566467')+'">'+t.h+'</span></button>'}).join('')+'</div>'+
+ '<section class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px"><h2 style="font-size:24px">'+c.form+'</h2>'+
+ c.f.map(function(f){return '<label class="f">'+f[0]+'<input type="text" placeholder="'+esc(f[1])+'"></label>'}).join('')+
+ '<label class="f">'+c.notes+'<textarea rows="4" placeholder="'+esc(c.np)+'"></textarea></label><button class="btn out" style="border-style:dashed">Add photos (optional)</button><button class="btn brick" id="submit" style="min-height:52px">Submit for review</button></section></div>';
+ return '<div class="wrap" style="padding-top:36px;padding-bottom:56px"><h1 style="font-size:40px">Contribute</h1><p class="muted" style="margin:6px 0 24px">Every submission is reviewed by a moderator before it goes live.</p>'+body+'</div>';
+}
+function vAdmin(){
+ var q=QUEUE[S.sel],pend=S.status.filter(function(x){return x==='Pending'}).length,cc=chipCol(S.status[S.sel]);
+ return '<div class="wrap" style="padding-top:36px;padding-bottom:56px"><div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px"><h1 style="font-size:40px">Moderation queue</h1><span class="badge" style="background:var(--amber);color:#5C3D00">'+pend+' pending</span></div><p class="muted" style="margin:6px 0 20px">Prototype view for content moderators. Decisions here are not saved.</p>'+
+ '<div class="card" style="overflow:auto;margin-bottom:20px"><table><thead><tr><th>Submission</th><th>Type</th><th>Submitted by</th><th>Status</th></tr></thead><tbody>'+
+ QUEUE.map(function(r,i){var c=chipCol(S.status[i]);return '<tr class="'+(i===S.sel?'sel':'')+'"><td><button data-sel="'+i+'" aria-pressed="'+(i===S.sel)+'">'+esc(r.t)+'</button></td><td><button data-sel="'+i+'" tabindex="-1">'+r.type+'</button></td><td><button data-sel="'+i+'" tabindex="-1">'+r.by+'</button></td><td><button data-sel="'+i+'" tabindex="-1"><span class="st" style="background:'+c[0]+';color:'+c[1]+'">'+S.status[i]+'</span></button></td></tr>'}).join('')+'</tbody></table></div>'+
+ '<section class="card" aria-label="Review submission" style="padding:24px;display:flex;flex-direction:column;gap:18px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2 style="font-size:24px">'+esc(q.t)+'</h2><span class="st" style="background:'+cc[0]+';color:'+cc[1]+'">'+S.status[S.sel]+'</span></div>'+
+ '<div style="display:grid;grid-template-columns:200px 1fr;gap:24px" class="adm"><div style="height:140px;border-radius:12px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:13px" class="muted">Submitted photo</div><div class="facts">'+q.f.map(function(f){return '<div><span>'+f[0]+'</span><span>'+esc(f[1])+'</span></div>'}).join('')+'</div></div>'+
+ '<div class="grid2"><label class="f">Verified on<input type="text" placeholder="Date you confirmed this"></label><label class="f">Closure notice (optional)<input type="text" placeholder="Text and dates shown on the site page"></label></div>'+
+ '<label class="f">Reason if rejecting (emailed to the submitter)<textarea rows="2"></textarea></label><div style="display:flex;justify-content:flex-end;gap:12px"><button class="btn out" style="border-color:#8E3220;color:#8E3220" id="reject">Reject</button><button class="btn teal" id="approve">Approve and publish</button></div></section></div>';
+}
+
+function route(){
+ var h=location.hash||'#/',p=h.split('/');
+ var key=p[1]||'';
+ var views={'':vHome,spot:function(){return vSpot(p[2])},hotels:vHotels,hosts:vHosts,contribute:vContribute,admin:vAdmin};
+ var v=views[key]||vHome;
+ $('#main').innerHTML=v();
+ var nav=[['','Explore'],['hotels','Hotels'],['hosts','Ambassadors'],['contribute','Contribute']];
+ var cur=key==='spot'?'':key;
+ $('#nav').innerHTML=nav.map(function(n){return '<a href="#/'+n[0]+'" class="'+(n[0]===cur?'on':'')+'"'+(n[0]===cur?' aria-current="page"':'')+'>'+n[1]+'</a>'}).join('');
+ document.title=(key?key.charAt(0).toUpperCase()+key.slice(1)+' · ':'')+'CulturalLoom';
+}
+function rerender(keepFocus){var y=window.scrollY;route();window.scrollTo(0,y)}
+
+document.addEventListener('click',function(e){
+ var t=e.target.closest('[data-cat],#sea,[data-season],[data-ctype],#submit,#again,[data-sel],#approve,#reject');
+ if(!t)return;
+ if(t.dataset.cat){S.cat=t.dataset.cat}
+ else if(t.id==='sea'){S.sea=!S.sea}
+ else if(t.dataset.season){S.season=t.dataset.season}
+ else if(t.dataset.ctype){S.ctype=t.dataset.ctype}
+ else if(t.id==='submit'){S.sent=true}
+ else if(t.id==='again'){S.sent=false}
+ else if(t.dataset.sel!==undefined){S.sel=+t.dataset.sel}
+ else if(t.id==='approve'){S.status[S.sel]='Approved'}
+ else if(t.id==='reject'){S.status[S.sel]='Rejected'}
+ rerender();
+});
+document.addEventListener('input',function(e){
+ if(e.target.id==='q'){S.q=e.target.value;var pos=e.target.selectionStart;rerender();var i=$('#q');if(i){i.focus();i.setSelectionRange(pos,pos)}}
+});
+window.addEventListener('hashchange',function(){window.scrollTo(0,0);route()});
+route();
+</script>
+<style>@media (max-width:700px){.adm{grid-template-columns:1fr!important}}</style>
+</body>
+</html>
